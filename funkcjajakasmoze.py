@@ -1,4 +1,16 @@
-formula = input()
+print("Hello, give the A part of the formula: ")
+
+A = input()
+
+print("Now give the operator: ")
+
+operator = input()
+
+print("Now give B part of the formula: ")
+
+B = input()
+
+formula = B
 
 if(formula[1] == "-" and formula[2] == ">"):
     print("NOT(", formula[0], ") v ", formula[3])
@@ -32,4 +44,3 @@ if(formula[2:6] == "vNOT" and formula[8:11] == "AND"):
     
 if(formula[2:8] == "ANDNOT" and formula[10] == "v"):
     print(formula[11])
-    
