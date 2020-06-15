@@ -3,7 +3,7 @@ def transform(formula):
     if(formula[1] == "-" and formula[2] == ">"):
         print("NOT(", formula[0], ") v ", formula[3])
     
-    elif(formula[1] == "<" and formula[2] == "-" and formula[3] == ">"):
+    elif(formula[1:4] == "<->"):
         print("( NOT(", formula[0], ") v ", formula[4], ") AND ( NOT(", formula[4], ") v ", formula[0], " )")
     
     elif(formula[0:3] == "NOT" and formula[5:8] == "AND"):
