@@ -1,42 +1,43 @@
 import re
 
 def transform(formula):
-
+    a = ''
     if "->" in formula:
-        print("~( ", formula[0], " ) v", formula[3])
+        a =  "~( "+formula[0]+" ) v "+formula[3]
     
     elif "<->" in formula:
-        print("( ~( ", formula[0], " ) v ", formula[-1], " )& ( ~( ", formula[-1], ") v", formula[0], " )")
+        a = "( ~( "+formula[0], " ) v "+formula[-1]+" ) & ( ~( "+formula[-1]+") v"+formula[0]+" )"
     
     elif "~" in formula and "&" in formula:
-        print("~( ", formula[0], " ) v ~( ", formula[-1], " )")
+        a = "~( "+ formula[0]+ " ) v ~( "+ formula[-1]+ " )"
     
     elif "~" in formula and "v" in formula:
-        print("~( ", formula[2], " ) & ~( ", formula[-2], " )")
+        a = "~( "+ formula[2]+ " ) & ~( "+ formula[-2]+ " )"
     
     elif "~~" in formula:
-        print(formula.replace('~~',''))
+        a = formula.replace('~~','')
     
     elif re.search('([a-z()]+)&([a-z()]+)v', formula):
-        print("( ", formula[1], " v ", formula[6], " ) & ( ", formula[3], " v ", formula[6], " )")
+        a = "( "+formula[1]+" v "+ formula[6]+ " ) & ( "+ formula[3]+ " v "+ formula[6]+ " )"
     
     elif re.search('([a-z()]+)v([a-z()]+)&', formula):
-        print("( ", formula[1], " & ", formula[6], " ) v ( ", formula[3], " & ", formula[6], " )")
+        a = "( "+ formula[1]+ " & "+ formula[6]+ " ) v ( "+ formula[3]+ " & "+ formula[6]+ " )"
     
     elif "v" in formula and formula[0] == formula[-1]:
-        print(formula[0])
+        a = formula[0]
     
     elif "&" in formula and formula[0] == formula[-1]:
-        print(formula[0])
+        a = formula[0]
     
     elif "v~" in formula and "&" in formula and formula[1] == formula[4]:
-        print(formula[7])
+        a = formula[7]
     
     elif "&~" in formula and "v" in formula and formula[1] == formula[4]:
-        print(formula[7])
+        a = formula[7]
 
     else: 
-        print(formula)
+        a = formula
+    return a
 
 print("Hello, give the A part of the formula: ")
 
@@ -51,9 +52,9 @@ print("Now give B part of the formula: ")
 B = input()
 
 if(len(A) < 3):
-    print(A, operator, end=" ")
-    transform(B)
+    b = transform(B)
+    print(A, operator, b)
 else:
-    transform(A)
-    print(operator, end=" ")
-    transform(B)
+    a = transform(A)
+    b = transform(B)
+    print( a , operator, b )
