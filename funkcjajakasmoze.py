@@ -48,7 +48,7 @@ print("Now give B part of the formula: ")
 
 B = input()
 
-if(len(A) == 1):
+if(len(A) < 3):
     print(A, operator, end=" ")
     transform(B)
 else:
