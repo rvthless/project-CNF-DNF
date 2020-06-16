@@ -1,3 +1,5 @@
+import re
+
 def transform(formula):
 
     if "->" in formula:
@@ -15,10 +17,10 @@ def transform(formula):
     elif "~~" in formula:
         print(formula.replace('~~',''))
     
-    elif formula.find('.*\&.*v'):
+    elif re.search('([a-z()]+)&([a-z()]+)v', formula):
         print("( ", formula[1], " v ", formula[6], " ) & ( ", formula[3], " v ", formula[6], " )")
     
-    elif formula.find('.*v.*\&'):
+    elif re.search('([a-z()]+)v([a-z()]+)&', formula):
         print("( ", formula[1], " & ", formula[6], " ) v ( ", formula[3], " & ", formula[6], " )")
     
     elif "v" in formula and formula[0] == formula[-1]:
@@ -27,10 +29,10 @@ def transform(formula):
     elif "&" in formula and formula[0] == formula[-1]:
         print(formula[0])
     
-    elif ("v~" and "&") in formula and formula[1] == formula[4]:
+    elif "v~" in formula and "&" in formula and formula[1] == formula[4]:
         print(formula[7])
     
-    elif("&~" and "v") in formula and formula[1] == formula[4]:
+    elif "&~" in formula and "v" in formula and formula[1] == formula[4]:
         print(formula[7])
 
     else: 
