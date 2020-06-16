@@ -1,36 +1,36 @@
 def transform(formula):
 
     if(formula[1] == "-" and formula[2] == ">"):
-        print("NOT(", formula[0], ") v ", formula[3])
+        print("~(", formula[0], ") v ", formula[3])
     
-    elif(formula[1:4] == "<->"):
-        print("( NOT(", formula[0], ") v ", formula[4], ") AND ( NOT(", formula[4], ") v ", formula[0], " )")
+    elif "<->" in formula:
+        print("( ~(", formula[0], ") v ", formula[-1], ") & ( ~(", formula[0], ") v ", formula[-1], " )")
     
-    elif(formula[0:3] == "NOT" and formula[5:8] == "AND"):
-        print("NOT(", formula[4], ") v NOT(", formula[8], ")")
+    elif(formula[0:3] == "~" and formula[5:8] == "&"):
+        print("~(", formula[4], ") v ~(", formula[8], ")")
     
-    elif(formula[0:3] == "NOT" and formula[5] == "v"):
-        print("NOT(", formula[4], ") AND NOT(", formula[6], ")")
+    elif(formula[0] == "~" and formula[5] == "v"):
+        print("~(", formula[4], ") & ~(", formula[6], ")")
     
     elif(formula[0:2] == "~~"):
         print(formula[2])
     
-    elif(formula[2:5] == "AND" and formula[7] == "v"):
-        print("( ", formula[1], " v ", formula[8], " ) AND ( ", formula[5], " v ", formula[8], " )")
+    elif(formula[2:5] == "&" and formula[7] == "v"):
+        print("( ", formula[1], " v ", formula[8], " ) & ( ", formula[5], " v ", formula[8], " )")
     
-    elif(formula[2] == "v" and formula[5:8] == "AND"):
-        print("( ", formula[1], " AND ", formula[8], " ) v ( ", formula[3], " AND ", formula[8], " )")
+    elif(formula[2] == "v" and formula[5:8] == "&"):
+        print("( ", formula[1], " & ", formula[8], " ) v ( ", formula[3], " & ", formula[8], " )")
     
-    elif(formula[1] == "v"):
+    elif(formula[1] == "v" and formula[0] == formula[2]):
         print(formula[0])
     
-    elif(formula[1:4] == "AND"):
+    elif(formula[1] == "&" and formula[0] == formula[2]):
         print(formula[0])
     
-    elif(formula[2:6] == "vNOT" and formula[8:11] == "AND"):
+    elif(formula[2:6] == "v~" and formula[8:11] == "&"):
         print(formula[11])
     
-    elif(formula[2:8] == "ANDNOT" and formula[10] == "v"):
+    elif(formula[2:8] == "&~" and formula[10] == "v"):
         print(formula[11])
 
     else: 
@@ -48,7 +48,10 @@ print("Now give B part of the formula: ")
 
 B = input()
 
-if(len(A) < 3):
+if(len(A) < 3 and len(B) < 3):
+    full = A + ' ' + operator + ' ' + B
+    transform(full)
+elif(len(A) < 3):
     print(A, operator, end=" ")
     transform(B)
 else:
