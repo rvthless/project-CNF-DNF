@@ -12,8 +12,8 @@ def transform(formula):
     elif(formula[0:3] == "NOT" and formula[5] == "v"):
         print("NOT(", formula[4], ") AND NOT(", formula[6], ")")
     
-    elif(formula[0:6] == "NOTNOT"):
-        print(formula[6])
+    elif(formula[0:2] == "~~"):
+        print(formula[2])
     
     elif(formula[2:5] == "AND" and formula[7] == "v"):
         print("( ", formula[1], " v ", formula[8], " ) AND ( ", formula[5], " v ", formula[8], " )")
@@ -48,7 +48,7 @@ print("Now give B part of the formula: ")
 
 B = input()
 
-if(len(A) == 1):
+if(len(A) < 3):
     print(A, operator, end=" ")
     transform(B)
 else:
