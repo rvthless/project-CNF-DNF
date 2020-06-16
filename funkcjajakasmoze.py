@@ -58,12 +58,6 @@ def transform2(formula):
     
     elif "&" in formula and formula[0] == formula[-1]:
         a = formula[0]
-    
-    elif "v~" in formula and "&" in formula and formula[1] == formula[4]:
-        a = formula[7]
-    
-    elif "&~" in formula and "v" in formula and formula[1] == formula[4]:
-        a = formula[7]
 
     else: 
         a = formula
