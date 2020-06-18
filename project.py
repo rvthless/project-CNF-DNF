@@ -12,7 +12,7 @@ def transform(formula):
         a = "~( "+ formula[0]+ " ) v ~( "+ formula[-1]+ " )"
     
     elif "~" in formula and "v" in formula:
-        a = "~( "+ formula[2]+ " ) & ~( "+ formula[-2]+ " )"
+        a = "~( "+ formula[1]+ " ) & ~( "+ formula[-1]+ " )"
     
     elif "~~" in formula:
         a = formula.replace('~~','')
