@@ -6,7 +6,7 @@ def transform(formula):
         a =  "~( "+formula[0]+" ) v "+formula[-1]
     
     elif "<->" in formula:
-        a = "( ~( "+formula[0], " ) v "+formula[-1]+" ) & ( ~( "+formula[-1]+") v"+formula[0]+" )"
+        a = "( ~( "+formula[0], " ) v "+formula[-1]+" ) & ( ~( "+formula[-1]+") v "+formula[0]+" )"
     
     elif "~" in formula and "&" in formula:
         a = "~( "+ formula[0]+ " ) v ~( "+ formula[-1]+ " )"
